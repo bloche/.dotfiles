@@ -3,14 +3,16 @@
 # exit on command failure
 set -e
 
-cd ~/.dotfiles
+thisdir=$(cd `dirname $0`; pwd)
+
 # Initialize vim settings
 echo "Initializing vim settings"
 echo "-------------------------"
 echo "Linking .vim and .vimrc"
-ln -s .vim ~/.vim
+ln -s ${thisdir}/.vim ~/.vim
 ln -s ~/.vim/.vimrc ~/.vimrc
 echo "Installing submodules"
+cd ${thisdir}
 git submodule init
 git submodule update
 
@@ -19,6 +21,6 @@ echo
 echo "Initializing bash settings"
 echo "--------------------------"
 echo "Linking profiles"
-ln -s .bash_profile ~/.bash_profile
-ln -s ~/.bash_profile ~/.bashrc
+ln -s ${thisdir}/.bash_profile ~/.profile
+ln -s ~/.profile ~/.bashrc
 
