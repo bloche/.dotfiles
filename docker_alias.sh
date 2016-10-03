@@ -1,9 +1,5 @@
 docker(){
-        if [[ "$@" == "init" ]]; then
-                command docker-machine start
-                echo "Setting up docker-machine env"
-                command eval $(docker-machine env)
-        elif [[ "$@" == "clean" ]]; then
+        if [[ "$@" == "clean" ]]; then
                 echo "Stopping all containers..."
                 command docker stop $(docker ps -aq) 2> /dev/null
                 echo "Removing all containers..."
