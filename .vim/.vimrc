@@ -8,6 +8,7 @@ let g:airline#extensions#hunks#enabled = 0
 " general settings
 set noshowmode
 set number
+set relativenumber
 syntax on
 filetype plugin indent on
 colorscheme ir_black
