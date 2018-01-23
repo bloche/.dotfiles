@@ -30,6 +30,9 @@ set hlsearch
 set incsearch
 set ignorecase
 
+" use standard backspace mode
+set backspace=2
+
 " always jump to next row instad of next line
 " when moving cursor up or down
 nnoremap j gj

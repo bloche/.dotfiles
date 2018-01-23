@@ -1,4 +1,4 @@
-# git completion 
+# git completion
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
 elif [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -23,3 +23,6 @@ if [ -f ~/.local_profile ]; then
     source ~/.local_profile
 fi
 
+if [ -n "$(which docker-machine)" ]; then
+    source .dotfiles/docker_alias.sh
+fi
