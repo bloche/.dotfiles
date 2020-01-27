@@ -23,6 +23,6 @@ if [ -f ~/.local_profile ]; then
     source ~/.local_profile
 fi
 
-if [ -n "$(which docker-machine)" ]; then
+if [ -n "$(which docker)" ]; then
     source .dotfiles/docker_alias.sh
 fi
