@@ -24,3 +24,10 @@ echo "Linking profiles"
 ln -s ${thisdir}/.bash_profile ~/.profile
 ln -s ~/.profile ~/.bashrc
 
+# Initiatlize zsh settings
+echo
+echo "Initializing zsh settings"
+echo "-------------------------"
+echo "Linking .zsh and .zshrc"
+ln -s ${thisdir}/.zsh ~/.zsh
+ln -s ${thisdir}/.zshrc ~/.zshrc
