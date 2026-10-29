@@ -8,6 +8,7 @@
 - Before any move, rename or removal, use the code-graph tools to list what depends on the symbol. Then use text search only for what a graph can't see, such as string references, docs, config and dynamic dispatch. Report both result sets before editing.
 - Avoid dumping entire large files into context. To understand a file or directory, start with the code-graph overview and symbol views. Use `Read` with `offset` and `limit` for only the specific line spans needed to understand signatures and call sites, or about to be edited.
 - After a large move or refactor, or when a graph result looks empty or stale, run `code-graph-mcp health-check` from the project root (the one exception to using the MCP tools over the CLI) and report anything other than `OK` before trusting caller lists. If the command isn't found, say so and fall back to text search. An empty result on a stale index is not evidence.
+- If `health-check` reports a stale index, run `code-graph-mcp incremental-index` and check again. Ask me before `rebuild-index --confirm`, which drops the index.
 - When you delegate code work to a subagent, tell it to check for the code-graph tools and use them, and ask it to say in its report which it used. If it says it can't see them, flag that to me.
 - At the end of each phase of a multi-phase task, state where the code-graph tools were used and where text search was used instead, with the reason.
 
