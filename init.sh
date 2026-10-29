@@ -48,8 +48,8 @@ link ${thisdir}/.zshenv ~/.zshenv
 echo
 echo "Initializing claude settings"
 echo "----------------------------"
-echo "Linking CLAUDE.md and settings.json"
+echo "Linking CLAUDE.md, settings.json and agents"
 mkdir -p ~/.claude
-for f in CLAUDE.md settings.json; do
+for f in CLAUDE.md settings.json agents; do
     link ${thisdir}/.claude/$f ~/.claude/$f
 done

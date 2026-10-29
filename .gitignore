@@ -1,2 +1,5 @@
 # vim history file
 .netrwhist
+
+# finder metadata
+.DS_Store
