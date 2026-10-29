@@ -1,9 +1,15 @@
 # git completion
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
-elif [ -f $(brew --prefix)/etc/bash_completion ]; then
+elif command -v brew > /dev/null && [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
     source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+fi
+
+# git prompt from the command line tools when nothing above provided it
+git_prompt=/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+if ! type __git_ps1 > /dev/null 2>&1 && [ -f $git_prompt ]; then
+    source $git_prompt
 fi
 
 # set time between shell prompts for PS1
@@ -24,7 +30,7 @@ if [ -f ~/.local_profile ]; then
 fi
 
 if [ -n "$(which docker)" ]; then
-    source .dotfiles/docker_alias.sh
+    source ~/.dotfiles/docker_alias.sh
 fi
 
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
