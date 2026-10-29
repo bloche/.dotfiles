@@ -5,12 +5,23 @@ set -e
 
 thisdir=$(cd `dirname $0`; pwd)
 
+# back up real files before linking over them
+link() {
+    if [ -e "$2" ] && [ ! -L "$2" ]; then
+        bak="$2.bak"
+        [ -e "$bak" ] && bak="$2.bak.$(date +%s)"
+        mv "$2" "$bak"
+        printf '\033[33mBacked up %s to %s\033[0m\n' "$2" "$bak"
+    fi
+    ln -sfn "$1" "$2"
+}
+
 # Initialize vim settings
 echo "Initializing vim settings"
 echo "-------------------------"
 echo "Linking .vim and .vimrc"
-ln -s ${thisdir}/.vim ~/.vim
-ln -s ~/.vim/.vimrc ~/.vimrc
+link ${thisdir}/.vim ~/.vim
+link ~/.vim/.vimrc ~/.vimrc
 echo "Installing submodules"
 cd ${thisdir}
 git submodule init
@@ -21,13 +32,24 @@ echo
 echo "Initializing bash settings"
 echo "--------------------------"
 echo "Linking profiles"
-ln -s ${thisdir}/.bash_profile ~/.profile
-ln -s ~/.profile ~/.bashrc
+link ${thisdir}/.bash_profile ~/.profile
+link ~/.profile ~/.bashrc
 
 # Initiatlize zsh settings
 echo
 echo "Initializing zsh settings"
 echo "-------------------------"
-echo "Linking .zsh and .zshrc"
-ln -s ${thisdir}/.zsh ~/.zsh
-ln -s ${thisdir}/.zshrc ~/.zshrc
+echo "Linking .zsh, .zshrc and .zshenv"
+link ${thisdir}/.zsh ~/.zsh
+link ${thisdir}/.zshrc ~/.zshrc
+link ${thisdir}/.zshenv ~/.zshenv
+
+# Initialize claude settings
+echo
+echo "Initializing claude settings"
+echo "----------------------------"
+echo "Linking CLAUDE.md and settings.json"
+mkdir -p ~/.claude
+for f in CLAUDE.md settings.json; do
+    link ${thisdir}/.claude/$f ~/.claude/$f
+done

@@ -26,3 +26,6 @@ fi
 if [ -n "$(which docker)" ]; then
     source .dotfiles/docker_alias.sh
 fi
+
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
