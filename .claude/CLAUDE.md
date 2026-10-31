@@ -21,6 +21,7 @@
 
 ## 3. Commits
 
+- Never commit on your own initiative, not even after finishing a change or as a convenience. Leave changes in the working tree and commit only when the user asks, so they decide how the work is split and worded. A request to commit covers the commits that request describes, not later changes.
 - Write the subject as capitalized, past-tense short phrases, one per change, separated by `;` when a commit does more than one thing (e.g. "Fixed stale event action examples; corrected events date-time parsing; updated backend wording in AGENTS.md"). No `feat:`/`fix:` style prefix and no ticket number. Add a body only when the why isn't obvious from the subject.
 - Try to split work into separate commits by category of change (e.g. schema/migrations, API code, pipeline code, tests, docs) rather than one large commit, where the pieces can stand on their own.
 - You may split changes within a single file across commits by staging individual hunks (`git add -p`, `git hunk`, or a patch applied to the index), but only if you can guarantee the behavior is identical once all the commits are applied. Confirm by comparing the final tree to the working tree (`git diff` against the working tree is empty after the last commit). Do not split hunks that depend on each other, such as a changed signature and its call sites, into commits that would leave an intermediate commit broken, unless the user has said that is acceptable.
